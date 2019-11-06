@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -17,5 +18,10 @@ public class HelperPage {
 
     public WebElement findElementByID(WebDriver driver, String id) {
         return driver.findElement(By.id(id));
+    }
+
+    public void scrollToElement(WebElement locator) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", locator);
     }
 }

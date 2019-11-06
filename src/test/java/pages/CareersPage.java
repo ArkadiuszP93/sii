@@ -1,5 +1,6 @@
 package pages;
 
+import com.sun.org.glassfish.gmbal.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,9 @@ import org.openqa.selenium.support.PageFactory;
  * Careers Page.
  */
 public class CareersPage extends HelperPage {
+
+    @FindBy(css = ".sii-breadcrumbs-whitebg")
+    WebElement breadcrumb;
 
     @FindBy(css = ".search-job-input")
     WebElement searchInput;
@@ -24,7 +28,8 @@ public class CareersPage extends HelperPage {
     @FindBy(css = ".selectArrow.loupe")
     WebElement loupe;
 
-    @FindBy(xpath = "//li[1]/div/div/div[1]/h2")
+    @Description("First element from job list")
+    @FindBy(css = ".job-ads-list div.jobAdBoxHead:first-of-type")
     WebElement jobAdd;
 
     public CareersPage(WebDriver driver) {
@@ -34,6 +39,7 @@ public class CareersPage extends HelperPage {
 
     /**
      * Fill in search input
+     *
      * @param search
      */
     public void setKeyword(String search) {
@@ -42,39 +48,42 @@ public class CareersPage extends HelperPage {
 
     /**
      * Choose location from dropdown
+     *
      * @param location
      * @return
      */
     public CareersPage setLocation(String location) {
         locationButton.click();
-        locationDropdown.findElement(By.xpath("//li[contains(.,'" + location + "')]")).click();
+        locationDropdown.findElement(By.xpath("//li[contains(text(),'" + location + "')]")).click();
         return this;
     }
 
     /**
      * Set Filters
+     *
      * @param searchKeyword
      * @param location
      * @return
      */
     public CareersPage setFilters(String searchKeyword, String location) {
-        setKeyword(searchKeyword);
         setLocation(location);
+        setKeyword(searchKeyword);
+        scrollToElement(breadcrumb);
         loupe.click();
         return this;
     }
 
     /**
      * Choose job offer
+     *
      * @return
      */
     public JobAddsPage chooseJobOffer() {
         try {
             jobAdd.click();
+        } catch (NoSuchElementException e) {
+            System.out.print("No job offers available");
         }
-        catch (NoSuchElementException e) {
-        System.out.print("No job offers available");
-    }
         return new JobAddsPage(driver);
     }
 }

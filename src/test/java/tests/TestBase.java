@@ -19,16 +19,19 @@ public class TestBase {
     @BeforeClass
     public void setUp() {
         driver = initializeChromeWebDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(getConfiguration().getSiteURL());
-        //close cookies notification
-        if (driver.findElement(By.cssSelector(".notification__text")).isDisplayed()) {
-            driver.findElement(By.cssSelector(".notification__dismiss")).click();
-        }
+        closeCookiesNotification();
     }
 
     @AfterClass
     public void tearDown() {
         driver.quit();
+    }
+
+    public void closeCookiesNotification() {
+        if (driver.findElement(By.cssSelector(".notification__text")).isDisplayed()) {
+            driver.findElement(By.cssSelector(".notification__dismiss")).click();
+        }
     }
 }
