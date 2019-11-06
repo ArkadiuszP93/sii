@@ -73,7 +73,7 @@ public class CareersPage extends HelperPage {
             jobAdd.click();
         }
         catch (NoSuchElementException e) {
-        System.out.print("Any Job Offer are not available: ");
+        System.out.print("No job offers available");
     }
         return new JobAddsPage(driver);
     }
