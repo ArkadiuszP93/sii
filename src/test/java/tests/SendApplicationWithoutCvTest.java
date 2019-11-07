@@ -17,7 +17,7 @@ public class SendApplicationWithoutCvTest extends TestBase implements TestData {
     public void testSendApplicationWithoutCv() {
         JobAddsPage jobAddsPage = new JobAddsPage(driver);
         MenuPage menuPage = new MenuPage(driver);
-        JobAddsPage careersPage = menuPage.goToCareersPage()
+        menuPage.goToCareersPage()
                 .setFilters(KEYWORDS, LOCATION)
                 .chooseJobOffer()
                 .fillNameField(NAME)

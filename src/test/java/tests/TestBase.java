@@ -29,6 +29,9 @@ public class TestBase {
         driver.quit();
     }
 
+    /**
+     * Close cookies notification
+     */
     public void closeCookiesNotification() {
         if (driver.findElement(By.cssSelector(".notification__text")).isDisplayed()) {
             driver.findElement(By.cssSelector(".notification__dismiss")).click();

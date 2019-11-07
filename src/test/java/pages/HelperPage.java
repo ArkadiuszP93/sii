@@ -20,6 +20,11 @@ public class HelperPage {
         return driver.findElement(By.id(id));
     }
 
+    /**
+     * Scroll the page to element
+     *
+     * @param locator
+     */
     public void scrollToElement(WebElement locator) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", locator);

@@ -34,31 +34,64 @@ public class JobAddsPage extends HelperPage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Fill name Field
+     *
+     * @param name
+     * @return
+     */
     public JobAddsPage fillNameField(String name) {
         nameInput.sendKeys(name);
         return this;
     }
 
+    /**
+     * Fill surname field
+     *
+     * @param surname
+     * @return
+     */
     public JobAddsPage fillSurnameField(String surname) {
         surnameInput.sendKeys(surname);
         return this;
     }
 
+    /**
+     * Fill email field
+     *
+     * @param email
+     * @return
+     */
     public JobAddsPage fillEmailField(String email) {
         emailInput.sendKeys(email);
         return this;
     }
 
+    /**
+     * Select mandatory checkbox
+     *
+     * @return
+     */
     public JobAddsPage selectMandatoryCheckbox() {
         checkboxMandatory.click();
         return this;
     }
 
+    /**
+     * Send application
+     *
+     * @return
+     */
     public JobAddsPage sendApplication() {
         submitButton.click();
         return this;
     }
 
+    /**
+     * Tooltip that CV is not attached
+     *
+     * @return
+     */
     public boolean errorIsDispalyed() {
         return errorCvTooltip.isDisplayed();
     }
