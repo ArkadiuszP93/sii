@@ -35,30 +35,33 @@ public class HelperPage {
 
     /**
      * Click on element
+     *
      * @param element
      */
-    public void click(WebElement element){
+    public void click(WebElement element) {
         waitForElementToBeClickable(element);
         element.click();
     }
 
     /**
      * Key in text in to element
+     *
      * @param element
      * @param text
      */
-    public void type(WebElement element, String text){
+    public void type(WebElement element, String text) {
         element.clear();
         element.sendKeys(text);
     }
 
     /**
      * Wait for element to be clickable
+     *
      * @param element
      * @return
      */
-    public WebElement waitForElementToBeClickable(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver,5);
+    public WebElement waitForElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.elementToBeClickable(element));
         return element;
     }

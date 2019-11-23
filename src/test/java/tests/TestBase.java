@@ -2,12 +2,9 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import pages.CareersPage;
-import pages.HelperPage;
 import pages.JobAddsPage;
 import pages.MenuPage;
 

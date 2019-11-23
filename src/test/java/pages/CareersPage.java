@@ -75,9 +75,10 @@ public class CareersPage extends HelperPage {
 
     /**
      * Return job name title
+     *
      * @return
      */
-    public String getJobName(){
+    public String getJobName() {
         return jobAdd.getText();
     }
 
