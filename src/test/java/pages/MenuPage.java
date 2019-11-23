@@ -17,7 +17,7 @@ public class MenuPage extends HelperPage {
      * @return
      */
     public CareersPage goToCareersPage() {
-        findElementByID(driver, "menu-item-23407").click();
+        click(findElementByID(driver, "menu-item-23407"));
         return new CareersPage(driver);
     }
 }

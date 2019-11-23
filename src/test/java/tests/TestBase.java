@@ -3,7 +3,13 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import pages.CareersPage;
+import pages.HelperPage;
+import pages.JobAddsPage;
+import pages.MenuPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,16 +21,22 @@ import static helpers.Driver.initializeChromeWebDriver;
  */
 public class TestBase {
     WebDriver driver;
+    MenuPage menu;
+    CareersPage careers;
+    JobAddsPage jobAdds;
 
-    @BeforeClass
+    @BeforeTest
     public void setUp() {
         driver = initializeChromeWebDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(getConfiguration().getSiteURL());
         closeCookiesNotification();
+        menu = new MenuPage(driver);
+        careers = new CareersPage(driver);
+        jobAdds = new JobAddsPage(driver);
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown() {
         driver.quit();
     }

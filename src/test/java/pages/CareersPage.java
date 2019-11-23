@@ -43,7 +43,7 @@ public class CareersPage extends HelperPage {
      * @param search
      */
     public void setKeyword(String search) {
-        searchInput.sendKeys(search);
+        type(searchInput, search);
     }
 
     /**
@@ -74,13 +74,21 @@ public class CareersPage extends HelperPage {
     }
 
     /**
+     * Return job name title
+     * @return
+     */
+    public String getJobName(){
+        return jobAdd.getText();
+    }
+
+    /**
      * Choose job offer
      *
      * @return
      */
     public JobAddsPage chooseJobOffer() {
         try {
-            jobAdd.click();
+            click(jobAdd);
         } catch (NoSuchElementException e) {
             System.out.print("No job offers available");
         }

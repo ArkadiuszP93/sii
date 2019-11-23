@@ -41,7 +41,7 @@ public class JobAddsPage extends HelperPage {
      * @return
      */
     public JobAddsPage fillNameField(String name) {
-        nameInput.sendKeys(name);
+        type(nameInput, name);
         return this;
     }
 
@@ -52,7 +52,7 @@ public class JobAddsPage extends HelperPage {
      * @return
      */
     public JobAddsPage fillSurnameField(String surname) {
-        surnameInput.sendKeys(surname);
+        type(surnameInput, surname);
         return this;
     }
 
@@ -63,7 +63,7 @@ public class JobAddsPage extends HelperPage {
      * @return
      */
     public JobAddsPage fillEmailField(String email) {
-        emailInput.sendKeys(email);
+        type(emailInput, email);
         return this;
     }
 
@@ -83,7 +83,7 @@ public class JobAddsPage extends HelperPage {
      * @return
      */
     public JobAddsPage sendApplication() {
-        submitButton.click();
+        click(submitButton);
         return this;
     }
 
