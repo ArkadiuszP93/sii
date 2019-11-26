@@ -1,14 +1,21 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Menu Page
  */
 public class MenuPage extends HelperPage {
 
+    @FindBy(id = "menu-item-23407")
+    private WebElement careers;
+
     public MenuPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     /**
@@ -17,7 +24,7 @@ public class MenuPage extends HelperPage {
      * @return
      */
     public CareersPage goToCareersPage() {
-        click(findElementByID(driver, "menu-item-23407"));
+        click(careers);
         return new CareersPage(driver);
     }
 }

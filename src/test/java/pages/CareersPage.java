@@ -14,23 +14,23 @@ import org.openqa.selenium.support.PageFactory;
 public class CareersPage extends HelperPage {
 
     @FindBy(css = ".sii-breadcrumbs-whitebg")
-    WebElement breadcrumb;
+    private WebElement breadcrumb;
 
     @FindBy(css = ".search-job-input")
-    WebElement searchInput;
+    private WebElement searchInput;
 
     @FindBy(id = "ui-id-1-menu")
-    WebElement locationDropdown;
+    private WebElement locationDropdown;
 
     @FindBy(id = "ui-id-1-button")
-    WebElement locationButton;
+    private WebElement locationButton;
 
     @FindBy(css = ".selectArrow.loupe")
-    WebElement loupe;
+    private WebElement loupe;
 
     @Description("First element from job list")
     @FindBy(css = ".job-ads-list div.jobAdBoxHead:first-of-type")
-    WebElement jobAdd;
+    private WebElement jobAdd;
 
     public CareersPage(WebDriver driver) {
         super(driver);
@@ -53,7 +53,7 @@ public class CareersPage extends HelperPage {
      * @return
      */
     public CareersPage setLocation(String location) {
-        locationButton.click();
+        click(locationButton);
         locationDropdown.findElement(By.xpath("//li[contains(text(),'" + location + "')]")).click();
         return this;
     }
@@ -68,8 +68,7 @@ public class CareersPage extends HelperPage {
     public CareersPage setFilters(String searchKeyword, String location) {
         setLocation(location);
         setKeyword(searchKeyword);
-        scrollToElement(breadcrumb);
-        loupe.click();
+        click(loupe);
         return this;
     }
 
@@ -79,6 +78,7 @@ public class CareersPage extends HelperPage {
      * @return
      */
     public String getJobName() {
+        waitForElementToBeVisible(jobAdd);
         return jobAdd.getText();
     }
 

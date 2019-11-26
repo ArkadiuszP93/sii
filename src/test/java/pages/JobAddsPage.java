@@ -11,22 +11,22 @@ import org.openqa.selenium.support.PageFactory;
 public class JobAddsPage extends HelperPage {
 
     @FindBy(id = "name")
-    WebElement nameInput;
+    private WebElement nameInput;
 
     @FindBy(id = "surname")
-    WebElement surnameInput;
+    private WebElement surnameInput;
 
     @FindBy(id = "email")
-    WebElement emailInput;
+    private WebElement emailInput;
 
     @FindBy(id = "recruitment_consent_yes")
-    WebElement checkboxMandatory;
+    private WebElement checkboxMandatory;
 
     @FindBy(xpath = "//*[@id=\"form_job_application\"]//*[@id=\"submit_btn\"]")
-    WebElement submitButton;
+    private WebElement submitButton;
 
     @FindBy(id = "Zebra_Form_error_message_upload_file")
-    WebElement errorCvTooltip;
+    private WebElement errorCvTooltip;
 
 
     public JobAddsPage(WebDriver driver) {
@@ -93,6 +93,7 @@ public class JobAddsPage extends HelperPage {
      * @return
      */
     public boolean errorIsDispalyed() {
+        waitForElementToBeVisible(errorCvTooltip);
         return errorCvTooltip.isDisplayed();
     }
 }

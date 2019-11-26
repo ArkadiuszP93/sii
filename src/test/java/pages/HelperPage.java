@@ -1,9 +1,8 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,23 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class HelperPage {
 
     protected WebDriver driver;
+    private Actions actionDriver;
+
 
     public HelperPage(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public WebElement findElementByID(WebDriver driver, String id) {
-        return driver.findElement(By.id(id));
-    }
-
-    /**
-     * Scroll the page to element
-     *
-     * @param element
-     */
-    public void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", element);
+        actionDriver = new Actions(driver);
     }
 
     /**
@@ -38,7 +26,7 @@ public class HelperPage {
      *
      * @param element
      */
-    public void click(WebElement element) {
+    protected void click(WebElement element) {
         waitForElementToBeClickable(element);
         element.click();
     }
@@ -49,7 +37,8 @@ public class HelperPage {
      * @param element
      * @param text
      */
-    public void type(WebElement element, String text) {
+    protected void type(WebElement element, String text) {
+        waitForElementToBeVisible(element);
         element.clear();
         element.sendKeys(text);
     }
@@ -60,9 +49,23 @@ public class HelperPage {
      * @param element
      * @return
      */
-    public WebElement waitForElementToBeClickable(WebElement element) {
+    protected WebElement waitForElementToBeClickable(WebElement element) {
+        actionDriver.moveToElement(element);
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        return element;
+    }
+
+    /**
+     * Wait for element to be visible
+     *
+     * @param element
+     * @return
+     */
+    protected WebElement waitForElementToBeVisible(WebElement element) {
+        actionDriver.moveToElement(element);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOf(element));
         return element;
     }
 }
