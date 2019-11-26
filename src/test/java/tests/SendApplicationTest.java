@@ -16,7 +16,7 @@ public class SendApplicationTest extends TestBase implements TestData {
         menu.goToCareersPage()
                 .setFilters(JOB_NAME, LOCATION);
 
-        assertEquals(JOB_NAME.toUpperCase(), careers.getJobName(), "Job name title is incorrect");
+        assertEquals(careers.getJobName(), JOB_NAME.toUpperCase(), "Job name title is incorrect");
     }
 
     /**
